@@ -4,12 +4,18 @@
     "description": "NodeJS server",
     "main": "index.js",
     "scripts": {
+        "start": "node server/server.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "author": "César Cardona Alonso",
+    "author": "Cesar Cardona Alonso",
     "license": "ISC",
     "dependencies": {
+        "bcrypt": "^5.0.0",
         "body-parser": "^1.19.0",
-        "express": "^4.17.1"
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "mongoose": "^5.11.8",
+        "mongoose-unique-validator": "^2.0.3",
+        "underscore": "^1.12.0"
     }
 }
