@@ -11,7 +11,9 @@ require("dotenv").config();
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.use(require('./routes/person'))
+// Global routes config
+
+app.use(require('./routes/index'))
 
 // parse application/json
 app.use(bodyParser.json())

@@ -4,8 +4,17 @@ const Person = require('../models/person')
 const bcrypt = require('bcrypt')
 const _ = require('underscore')
 
-app.get('/person', function(req, res) {
+const { checkToken, checkAdminRole } = require('../middlewares/auth')
 
+app.get('/person', checkToken, (req, res) => {
+
+    /*
+    return res.json({
+        person: req.person,
+        name: req.person.name,
+        email: req.person.email
+    })
+    */
     let from = req.query.from || 0
     from = Number(from)
 
@@ -32,7 +41,7 @@ app.get('/person', function(req, res) {
         })
 })
 
-app.post('/person', function(req, res) {
+app.post('/person', [checkToken, checkAdminRole], (req, res) => {
 
     let body = req.body;
 
@@ -59,7 +68,7 @@ app.post('/person', function(req, res) {
 })
 
 
-app.put('/person/:id', function(req, res) {
+app.put('/person/:id', [checkToken, checkAdminRole], (req, res) => {
     let id = req.params.id;
     let body = _.pick(req.body, ['name', 'email', 'img', 'role', 'state']);
 
@@ -82,7 +91,7 @@ app.put('/person/:id', function(req, res) {
 })
 
 
-app.delete('/person/:id', function(req, res) {
+app.delete('/person/:id', [checkToken, checkAdminRole], (req, res) => {
     let id = req.params.id;
 
     // Delete record
